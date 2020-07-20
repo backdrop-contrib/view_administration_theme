@@ -1,0 +1,4 @@
+type = module
+name = View Administration Theme
+description = Provides the `view administration theme` permission.
+backdrop = 1.x

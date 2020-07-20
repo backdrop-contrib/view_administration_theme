@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Provides the `view administration theme` permission.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function view_administration_theme_permission() {
+  $options = array('@appearance-url' => url('admin/appearance'));
+  $description = t('This is only used when the site is configured to use a separate administration theme on the <a href="@appearance-url">Appearance</a> page.', $options);
+  return array(
+    'view administration theme' =>  array(
+      'title' => t('View the administration theme'),
+      'description' => $description,
+    ),
+  );
+}
