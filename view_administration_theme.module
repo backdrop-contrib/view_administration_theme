@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Provides the `view administration theme` permission.
+ * Provides the `view the administration theme` permission.
  */
 
 /**
@@ -11,9 +11,20 @@ function view_administration_theme_permission() {
   $options = array('@appearance-url' => url('admin/appearance'));
   $description = t('This is only used when the site is configured to use a separate administration theme on the <a href="@appearance-url">Appearance</a> page.', $options);
   return array(
-    'view administration theme' =>  array(
+    'view the administration theme' =>  array(
       'title' => t('View the administration theme'),
       'description' => $description,
     ),
   );
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+function view_administration_theme_custom_theme() {
+  if (path_is_admin(current_path())
+    && user_access('access administration pages')
+    && user_access('view the administration theme')) {
+      return config_get('system.core', 'admin_theme');
+  }
 }
